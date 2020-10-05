@@ -8,7 +8,7 @@ There is an example document which shows several variants of the logo.
 ## Installation
 
 Just put `neslogo.sty` and `neslogofallback.sty` into your TEXMF tree,
-typically eithe into `%USERPROFILE%/texmf/tex/latex/neslogo/` (on MS Windows),
+typically either into `%USERPROFILE%/texmf/tex/latex/neslogo/` (on MS Windows),
 or into `$HOME/texmf/tex/latex/neslogo/` on Linux.
 
 ## Usage
