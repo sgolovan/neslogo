@@ -1,0 +1,38 @@
+%% neslogodemo.tex --
+%%
+%% The New Economic School Logo (demo)
+%%
+%% Copyright 2020 Sergei Golovan
+%% 
+%% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
+%% International License (https://creativecommons.org/licenses/by-sa/4.0/).
+%%
+
+\documentclass[a4paper]{article}
+
+\usepackage{neslogo}
+\parindent=0pt
+
+\begin{document}
+\neslogo\
+\neslogo[palette=grey]
+\neslogo[palette=mono]
+
+\framebox{\neslogo[palette=mono,color=blue]}
+\colorbox{black}{\neslogo[color=white]}
+\colorbox{black}{\neslogo[palette=mono,color=white]}
+
+\neslogo[lang=english]
+\neslogo[lang=english,palette=grey]
+\neslogo[lang=english,palette=mono]
+
+\framebox{\neslogo[lang=english,palette=mono,color=blue]}
+\colorbox{black}{\neslogo[lang=english,color=white]}
+\colorbox{black}{\neslogo[lang=english,palette=mono,color=white]}
+
+\vspace{1cm}
+\neslogo[size=3cm,grid=true]
+
+\vspace{1cm}
+\neslogo[lang=english,size=3cm,grid=true]
+\end{document}
