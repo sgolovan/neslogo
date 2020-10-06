@@ -48,7 +48,7 @@ supported as well).
 
 ## Examples
 
-`\neslogo[lang=english,palette=color,color=white]`
+`\neslogo[lang=english,palette=color,color=black]`
 `\neslogo[lang=russian,palette=mono,color=blue]`
 
 ## License
