@@ -51,6 +51,8 @@ supported as well).
 `\neslogo[lang=english,palette=color,color=black]`
 `\neslogo[lang=russian,palette=mono,color=blue]`
 
+![Example](https://raw.githubusercontent.com/sgolovan/neslogo/main/example/example.png)
+
 ## License
 
 The package code is licensed under a [Creative Commons Attribution-ShareAlike
