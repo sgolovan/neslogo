@@ -2,13 +2,13 @@
 %%
 %% The New Economic School Logo
 %%
-%% Copyright 2020 Sergei Golovan
+%% Copyright 2020-2024 Sergei Golovan
 %% 
 %% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
 %% International License (https://creativecommons.org/licenses/by-sa/4.0/).
 %%
 
-\ProvidesPackage{neslogo}[2020/10/01 New Economic School Logo]
+\ProvidesPackage{neslogo}[2024/04/07 The New Economic School logo]
 
 \RequirePackage{tikz}
 \RequirePackage{xparse}
@@ -18,187 +18,16 @@
 \RequirePackage{ifthen}
 \RequirePackage{xkeyval}
 
-\ifxetex
-  \def\neslogo@fontspec{true}
-\else
-  \ifluatex
-    \def\neslogo@fontspec{true}
-  \else
-    \def\neslogo@fontspec{false}
-  \fi
-\fi
-\ifthenelse{\equal{\neslogo@fontspec}{true}}{
-  \RequirePackage{fontspec}
-  \IfFontExistsTF{Humanist531 BT}{
-    \IfFontExistsTF{Humanist531 BT Bold}{
-      \newfontfamily\neslogo@humanist{Humanist531 BT}[BoldFont={Humanist531 BT Bold}]
-      \let\neslogo@next\relax
-    }{
-      \RequirePackage{neslogofallback}
-      \let\neslogo@next\endinput
-    }
-  }{
-    \RequirePackage{neslogofallback}
-    \let\neslogo@next\endinput
-  }
-}{
-  \RequirePackage{neslogofallback}
-  \let\neslogo@next\endinput
-}
-\neslogo@next
-
-\SetupKeyvalOptions{family=neslogo,prefix=nl@}
-
-\ProcessKeyvalOptions{neslogo}
-
-% Pantone 485, CMYK 0,100,100,0, RGB 223,0,26
-\definecolor{nesred}{rgb}{0.8745,0,0.1020}
-
-% Pantone 293, CMYK 100,60,0,0, RGB 0,87,165
-\definecolor{nesblue}{rgb}{0,0.3412,0.6471}
-
-% Pantone Process Black, CMYK 0,0,0,100, RGB 0,0,0
-\definecolor{nesblack}{rgb}{0,0,0}
-
-% Pantone Process Black 55%, CMYK 0,0,0,55, RGB 138,138,142
-\definecolor{nesblack55}{rgb}{0.5412,0.5412,0.5569}
-
-% Pantone Process Black 80%, CMYK 0,0,0,80, RGB 80,78,83
-\definecolor{nesblack80}{rgb}{0.3137,0.3059,0.3255}
-
-% Pantone White, CMYK 0,0,0,0, RGB 255,255,255
-\definecolor{neswhite}{rgb}{1,1,1}
-
-\def\neslogo@triangles#1#2{%
-  \fill[fill=#1] (0,0) -- (3,3) -- (3,0) -- cycle;
-  \fill[fill=#2] (0,-0.4) -- (3,-3.4) -- (3,-0.4) -- cycle;
-}
-
-\def\neslogo@grid{%
-  \def\@lowx{-1}
-  \def\@highx{10.6}
-  \def\@lowy{-4.4}
-  \def\@highy{4}
-  \foreach \i in {-4,...,4}{%
-    \draw[gray] (\@lowx,\i) -- (\@highx,\i);
-  }
-  \draw[gray] (\@lowx,\@lowy) -- (\@highx,\@lowy);
-  \draw[gray, dashed] (\@lowx,-0.4) -- (\@highx,-0.4);
-  \draw[gray, dashed] (\@lowx,1.8) -- (\@highx,1.8);
-  \draw[gray, dashed] (\@lowx,-2.8) -- (\@highx,-2.8);
-  \draw[gray, dashed] (\@lowx,-3.4) -- (\@highx,-3.4);
-
-  \foreach \i in {-1,...,10}{%
-    \draw[gray] (\i,\@lowy) -- (\i,\@highy);
-  }
-  \draw[gray] (\@highx,\@lowy) -- (\@highx,\@highy);
-  \draw[gray, dashed] (3.8,\@lowy) -- (3.8,\@highy);
-  \draw[gray, dashed] (7.2,\@lowy) -- (7.2,\@highy);
-  \draw[gray, dashed] (9.6,\@lowy) -- (9.6,\@highy);
-}
-
-\def\neslogo@k{\kern-0.4pt}
-\def\neslogo@l{\kern-0.2pt}
-\def\neslogo@bigtext{%
-  \neslogo@humanist\fontsize{2.61cm}{3cm}\selectfont\bfseries
-  \ifthenelse{\equal{\neslogo@lang}{english}}{N\kern-1.48pt E\kern-1.2pt S}%
-             {Р\kern-4.6pt Э\kern-4.6pt Ш}%
-}
-\def\neslogo@smalltext{%
-  \parbox{6cm}{%
-    \neslogo@humanist\fontsize{0.88cm}{0.897cm}\selectfont\mdseries
-    %\baselineskip=25.5222pt
-    \baselineskip=0.897cm
-    \ifthenelse{\equal{\neslogo@lang}{english}}{%
-      N\neslogo@k e\neslogo@k w\\
-      E\neslogo@k c\neslogo@k o\neslogo@k n\neslogo@k o\neslogo@k m\neslogo@k i\neslogo@k c\\
-      \hspace*{0.5pt}S\neslogo@k c\neslogo@k h\neslogo@k o\neslogo@k o\neslogo@k l
-    }{%
-      Р\neslogo@l о\neslogo@l с\neslogo@l с\neslogo@l и\neslogo@l й\neslogo@l с\neslogo@l к\neslogo@l а\neslogo@l я\\
-      э\neslogo@l к\neslogo@l о\neslogo@l н\neslogo@l о\neslogo@l м\neslogo@l и\neslogo@l ч\neslogo@l е\neslogo@l с\neslogo@l к\neslogo@l а\neslogo@l я\\
-      ш\neslogo@l к\neslogo@l о\neslogo@l л\neslogo@l а
-    }%
-  }%
-}
-
-\define@key{neslogo}{lang}{%
-  \ifthenelse{\equal{#1}{russian} \OR \equal{#1}{english}}{%
-    \def\neslogo@lang{#1}%
-  }{%
-    \PackageError{neslogo}{Invalid lang `#1', valid values are russian or english}{}
-  }%
-}
-\define@key{neslogo}{palette}{%
-  \ifthenelse{\equal{#1}{color} \OR \equal{#1}{grey} \OR \equal{#1}{mono}}{%
-    \def\neslogo@palette{#1}%
-  }{%
-    \PackageError{neslogo}{Invalid palette `#1', valid values are color, grey or mono}{}
-  }%
-}
-\define@key{neslogo}{color}{%
-  \ifthenelse{\equal{#1}{white}}{%
-    \def\neslogo@color{neswhite}%
-  }{%
-  \ifthenelse{\equal{#1}{darkgrey}}{%
-    \def\neslogo@color{nesblack80}%
-  }{%
-  \ifthenelse{\equal{#1}{lightgrey}}{%
-    \def\neslogo@color{nesblack55}%
-  }{%
-  \ifthenelse{\equal{#1}{blue}}{%
-    \def\neslogo@color{nesblue}%
-  }{%
-  \ifthenelse{\equal{#1}{red}}{%
-    \def\neslogo@color{nesred}%
-  }{%
-  \ifthenelse{\equal{#1}{black}}{%
-    \def\neslogo@color{nesblack}%
-  }{%
-    \PackageError{neslogo}{Invalid color `#1', valid values are white, black, red, blue, lightgrey, darkgrey}{}
-  }}}}}}%
-}
-\define@key{neslogo}{size}{\def\neslogo@size{#1}}
-\define@boolkey{neslogo}{grid}[false]{}
+\RequirePackage{neslogoold}
+\RequirePackage{neslogonew}
 
 \NewDocumentCommand\neslogo{O{}}{%
-  \def\neslogo@lang{russian}%
-  \def\neslogo@palette{color}%
-  \def\neslogo@color{nesblack}%
-  \def\neslogo@size{1in}%
   \setkeys{neslogo}{#1}%
-  \ifthenelse{\equal{\neslogo@palette}{color}}{%
-    \def\neslogo@colorup{nesred}%
-    \def\neslogo@colordown{nesblue}%
-  }{%
-  \ifthenelse{\equal{\neslogo@palette}{grey}}{%
-    \def\neslogo@colorup{nesblack55}%
-    \def\neslogo@colordown{nesblack80}%
-  }{%
-  \ifthenelse{\equal{\neslogo@palette}{mono}}{%
-    \def\neslogo@colorup{\neslogo@color}%
-    \def\neslogo@colordown{\neslogo@color}%
-  }{}}}%
-  \ifthenelse{\equal{\neslogo@lang}{english}}{%
-    \def\neslogo@right{8}%
-  }{%
-    \def\neslogo@right{9.6}%
-  }%
-  \pgfmathsetmacro{\ratio}{\neslogo@size/(6.4cm)}%
-  \scalebox{\ratio}{%
-    \begin{tikzpicture}
-      \useasboundingbox (0,3) rectangle (\neslogo@right,-3.4);
-      \ifKV@neslogo@grid
-        \neslogo@grid
-      \else
-        \clip (0,3) rectangle (\neslogo@right,-3.4);
-      \fi
-      \neslogo@triangles{\neslogo@colorup}{\neslogo@colordown}
-      \draw (3.58,-0.02) node[anchor=south west, inner sep=0, outer sep=0,
-                              text height=0, text depth=0, color=\neslogo@color] {\neslogo@bigtext};
-      \draw (3.73,-1.67) node[anchor=north west, inner sep=0, outer sep=0,
-                              text height=0, text depth=0, color=\neslogo@color] {\neslogo@smalltext};
-    \end{tikzpicture}%
-  }%
+  \ifKV@neslogo@old
+    \neslogoold[#1]
+  \else
+    \neslogonew[#1]
+  \fi
 }
 
 %% End of neslogo.sty

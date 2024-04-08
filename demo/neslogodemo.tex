@@ -2,13 +2,15 @@
 %%
 %% The New Economic School Logo (demo)
 %%
-%% Copyright 2020 Sergei Golovan
+%% Copyright 2020-2024 Sergei Golovan
 %% 
 %% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
 %% International License (https://creativecommons.org/licenses/by-sa/4.0/).
 %%
 
 \documentclass[a4paper]{article}
+
+\usepackage[margin=1cm]{geometry}
 
 \usepackage{neslogo}
 \parindent=0pt
@@ -18,7 +20,7 @@
 \neslogo[palette=grey]
 \neslogo[palette=mono]
 
-\framebox{\neslogo[palette=mono,color=blue]}
+\framebox{\neslogo[palette=mono,color=red]}
 \colorbox{black}{\neslogo[color=white]}
 \colorbox{black}{\neslogo[palette=mono,color=white]}
 
@@ -30,9 +32,22 @@
 \colorbox{black}{\neslogo[lang=english,color=white]}
 \colorbox{black}{\neslogo[lang=english,palette=mono,color=white]}
 
-\vspace{1cm}
-\neslogo[size=3cm,grid=true]
+\bigskip
 
-\vspace{1cm}
-\neslogo[lang=english,size=3cm,grid=true]
+\neslogo[old=true]
+\neslogo[palette=grey,old=true]
+\neslogo[palette=mono,old=true]
+
+\framebox{\neslogo[palette=mono,color=blue,old=true]}
+\colorbox{black}{\neslogo[color=white,old=true]}
+\colorbox{black}{\neslogo[palette=mono,color=white,old=true]}
+
+\neslogo[lang=english,old=true]
+\neslogo[lang=english,palette=grey,old=true]
+\neslogo[lang=english,palette=mono,old=true]
+
+\framebox{\neslogo[lang=english,palette=mono,color=blue,old=true]}
+\colorbox{black}{\neslogo[lang=english,color=white,old=true]}
+\colorbox{black}{\neslogo[lang=english,palette=mono,color=white,old=true]}
+
 \end{document}

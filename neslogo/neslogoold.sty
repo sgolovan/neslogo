@@ -1,14 +1,14 @@
 %% neslogofallback.sty --
 %%
-%% The NES Logo for pdflatex or if there's no Humanist 531 font installed
+%% The old NES Logo
 %%
-%% Copyright 2020 Sergei Golovan
+%% Copyright 2020-2024 Sergei Golovan
 %% 
 %% This work is licensed under a Creative Commons Attribution-ShareAlike 4.0
 %% International License (https://creativecommons.org/licenses/by-sa/4.0/).
 %%
 
-\ProvidesPackage{neslogofallback}[2020/10/01 New Economic School Logo fallback]
+\ProvidesPackage{neslogoold}[2024/04/07 The old New Economic School logo]
 
 \RequirePackage{tikz}
 \RequirePackage{xparse}
@@ -38,7 +38,7 @@
 % Pantone White, CMYK 0,0,0,0, RGB 255,255,255
 \definecolor{neswhite}{rgb}{1,1,1}
 
-\def\@neslogorus#1#2#3{%
+\def\@neslogooldrus#1#2#3{%
 \begin{tikzpicture}[y=0.80pt,
                     x=0.80pt,
                     yscale=-1,
@@ -508,7 +508,7 @@
 \end{tikzpicture}%
 }
 
-\def\@neslogoeng#1#2#3{%
+\def\@neslogooldeng#1#2#3{%
 \begin{tikzpicture}[y=0.80pt,
                     x=0.80pt,
                     yscale=-1,
@@ -844,13 +844,25 @@
     \def\neslogo@color{nesblack80}%
   }{%
   \ifthenelse{\equal{#1}{lightgrey}}{%
-    \def\neslogo@color{nesblack55}%
+    \ifKV@neslogo@old
+      \def\neslogo@color{nesblack55}%
+    \else
+      \def\neslogo@color{nesblack20}%
+    \fi
   }{%
   \ifthenelse{\equal{#1}{blue}}{%
-    \def\neslogo@color{nesblue}%
+    \ifKV@neslogo@old
+      \def\neslogo@color{nesblue}%
+    \else
+      \def\neslogo@color{nesdarkblue}%
+    \fi
   }{%
   \ifthenelse{\equal{#1}{red}}{%
-    \def\neslogo@color{nesred}%
+    \ifKV@neslogo@old
+      \def\neslogo@color{nesred}%
+    \else
+      \def\neslogo@color{nesdarkred}%
+    \fi
   }{%
   \ifthenelse{\equal{#1}{black}}{%
     \def\neslogo@color{nesblack}%
@@ -860,12 +872,15 @@
 }
 \define@key{neslogo}{size}{\def\neslogo@size{#1}}
 \define@boolkey{neslogo}{grid}[false]{}
+\define@boolkey{neslogo}{descriptor}[false]{}
+\define@boolkey{neslogo}{old}[false]{}
 
-\NewDocumentCommand\neslogo{O{}}{%
+\NewDocumentCommand\neslogoold{O{}}{%
   \def\neslogo@lang{russian}%
   \def\neslogo@palette{color}%
   \def\neslogo@color{nesblack}%
   \def\neslogo@size{1in}%
+  \KV@neslogo@oldtrue
   \setkeys{neslogo}{#1}%
   \ifthenelse{\equal{\neslogo@palette}{color}}{%
     \def\neslogo@colorup{nesred}%
@@ -882,9 +897,9 @@
   \pgfmathsetmacro{\ratio}{\neslogo@size/(4.327cm)}%
   \scalebox{\ratio}{%
     \ifthenelse{\equal{\neslogo@lang}{russian}}{%
-      \@neslogorus{\neslogo@colorup}{\neslogo@colordown}{\neslogo@color}%
+      \@neslogooldrus{\neslogo@colorup}{\neslogo@colordown}{\neslogo@color}%
     }{%
-      \@neslogoeng{\neslogo@colorup}{\neslogo@colordown}{\neslogo@color}%
+      \@neslogooldeng{\neslogo@colorup}{\neslogo@colordown}{\neslogo@color}%
     }
   }%
 }

@@ -42,16 +42,21 @@ the color of the logo text (only `black` and `white` make sense here, `black` fo
 (the NES brandbook prescribes only `white`, `black` and `blue` logos, but any other three colors are
 supported as well).
 
-#### `grid`
+#### `old`
 
-(`false` or `true`) Shows a grid around the logo for debugging purposes.
+(`false` or `true`) If true, the old style logo is chosen.
 
 ## Examples
 
 `\neslogo[lang=english,palette=color,color=black]`
-`\neslogo[lang=russian,palette=mono,color=blue]`
+`\neslogo[lang=russian,palette=mono,color=red]`
 
 ![Example](https://raw.githubusercontent.com/sgolovan/neslogo/main/example/example.png)
+
+`\neslogo[lang=english,palette=color,color=black,old=true]`
+`\neslogo[lang=russian,palette=mono,color=blue,old=true]`
+
+![Example](https://raw.githubusercontent.com/sgolovan/neslogo/main/example/exampleold.png)
 
 ## License
 
