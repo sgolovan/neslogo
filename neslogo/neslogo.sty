@@ -22,6 +22,9 @@
 \RequirePackage{neslogonew}
 
 \NewDocumentCommand\neslogo{O{}}{%
+  \KV@neslogo@oldfalse
+  \KV@neslogo@texttrue
+  \KV@neslogo@descriptorfalse
   \setkeys{neslogo}{#1}%
   \ifKV@neslogo@old
     \neslogoold[#1]

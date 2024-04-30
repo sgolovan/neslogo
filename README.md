@@ -42,9 +42,18 @@ the color of the logo text (only `black` and `white` make sense here, `black` fo
 (the NES brandbook prescribes only `white`, `black` and `blue` logos, but any other three colors are
 supported as well).
 
+#### `text`
+
+(`false` or `true`, default is `true`) If false, the 'NES' text is not printed, only two triangles are printed.
+
+#### `descriptor`
+
+(`false` or `true`, default is `fale`) If true, the descriptor 'New Economic School' is printed additionally to the
+'NES' abbreviation text.
+
 #### `old`
 
-(`false` or `true`) If true, the old style logo is chosen.
+(`false` or `true`, default is `false`) If true, the old style logo is chosen.
 
 ## Examples
 
