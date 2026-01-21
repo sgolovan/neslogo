@@ -48,7 +48,7 @@ supported as well).
 
 #### `descriptor`
 
-(`false` or `true`, default is `fale`) If true, the descriptor 'New Economic School' is printed additionally to the
+(`false` or `true`, default is `false`) If true, the descriptor 'New Economic School' is printed additionally to the
 'NES' abbreviation text.
 
 #### `old`
